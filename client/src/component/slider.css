@@ -1,44 +1,41 @@
-body{
-    margin: 0;
-    padding: 0;
-    background:#6bd6c6;
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Налаштуйте розміри відповідно до вашого дизайну */
+    margin: 0 auto;
 }
+
 .container {
+    display: flex;
+    overflow: hidden;
+}
+
+.slide {
+    flex: 0 0 auto;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+
+.slide.active {
+    transform: translateX(0) scale(1.5);
+    z-index: 99;
+}
+
+.prev, .next {
     position: absolute;
-    top:35%;
-    left:45%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-img{
-    height:250px;
-    width:150px;
-    position: absolute;
-    z-index:9;
-    border:2px solid gray;
-    transition:all 500ms ease;
+
+.prev {
+    left: 10px;
 }
-.c1{
-    transform:translateX(0) scale(1.5);
-    z-index:99;
+
+.next {
+    right: 10px;
 }
-.c2{
-    transform:translateX(-100px) scale(1);
-}
-.c3{
-    transform:translateX(100px) scale(1);
-}
-.prev,.next{
-    position: absolute;
-    color:gray;
-    border:2px solid gray;
-    width:100px;
-    height:30px;
-    line-height:30px;
-    text-align:center;
-    cursor:pointer;
-    top:50%;
-    &:hover{
-        background:darken(#6bd6c6,5%);
-    }
-}
-.prev{left:20%;}
-.next{right:20%}
