@@ -17,6 +17,7 @@ const backIcon = [
 const App = () => {
     const [slides, setSlides] = useState([]);
     const [flag, setFlag] = useState(0);
+    const [activeSlide, setActiveSlide] = useState(0);
 
     useEffect(() => {
         const container = document.querySelector(".container");
@@ -26,31 +27,43 @@ const App = () => {
 
     const nextSlide = () => {
         setFlag((prevFlag) => (prevFlag + 1) % slides.length);
+        setActiveSlide((prevFlag) => (prevFlag + 1) % slides.length)
     };
 
     const prevSlide = () => {
         setFlag((prevFlag) => (prevFlag - 1 + slides.length) % slides.length);
+        setActiveSlide((prevFlag) => (prevFlag - 1 + slides.length) % slides.length)
     };
 
     useEffect(() => {
         slides.forEach((slide, index) => {
             let position = (index - flag + slides.length) % slides.length;
 
+            if (index === activeSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+
             if (position === 0) {
                 slide.style.opacity = 1
                 slide.style.transform = "translateX(0) scale(1)";
+                // slide.style.boxShadow = "1em 0 1em -0.2em rgba(0, 0, 0, 0.2), -1em 0 1em -0.2em rgba(0, 0, 0, 0.2)"
                 slide.style.zIndex = 99;
             } else if (position === 1) {
                 slide.style.opacity = 1
                 slide.style.transform = "translateX(32%) scale(0.69)";
+                slide.style.boxShadow = "none";
                 slide.style.zIndex = 9;
             } else if (position === slides.length - 1) {
                 slide.style.opacity = 1
                 slide.style.transform = "translateX(-32%) scale(0.69)";
+                slide.style.boxShadow = "none";
                 slide.style.zIndex = 9;
             } else {
                 slide.style.opacity = 0
                 slide.style.transform = "translateX(0) scale(0)";
+                slide.style.boxShadow = "none";
                 slide.style.zIndex = 1;
             }
         });
@@ -65,23 +78,26 @@ const App = () => {
         <>
             <div className="container" {...handlers}>
                 <div className="slide s1">
-                    <div className='slide_emodji'>
-                        <picture>
-                            <img
-                                src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/Fire.webp"
-                                alt="Fire" width="40" height="40"/>
-                        </picture>
+                    <div className="content">
+                        <div className='slide_emodji'>
+                            <picture>
+                                <img
+                                    src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/Fire.webp"
+                                    alt="Fire" width="40" height="40"/>
+                            </picture>
+                        </div>
+                        <h3>Basic</h3>
+                        <span>200$</span>
+                        <ul>
+                            <li>налаштування акаунту</li>
+                            <li>створення 1-го сценарію</li>
+                            <li>консультація</li>
+                        </ul>
+                        <a href='https://t.me/chatbotique_bot?start=w26366518'>деталі</a>
                     </div>
-                    <h3>BASIC</h3>
-                    <span>200$</span>
-                    <ul>
-                        <li>налаштування акаунту</li>
-                        <li>створення 1-го сценарію</li>
-                        <li>консультація</li>
-                    </ul>
-                    <button>деталі</button>
                 </div>
                 <div className="slide s2">
+                    <div className="content">
                     <div className='slide_emodji'>
                         <picture>
                             {/*<source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f31f/512.webp"*/}
@@ -94,14 +110,16 @@ const App = () => {
                         </picture>
                     </div>
                     <h3>Pro</h3>
-                    <span>від 200$</span>
+                    <span><small>від</small> 200$</span>
                     <ul>
                         <li>Basic</li>
                         <li>налаштування AI бота</li>
                     </ul>
-                    <button>деталі</button>
+                        <a href='https://t.me/chatbotique_bot?start=w26565312'>деталі</a>
+                    </div>
                 </div>
                 <div className="slide s3">
+                    <div className="content">
                     <div className='slide_emodji'>
                         <picture>
                             <img
@@ -110,14 +128,16 @@ const App = () => {
                         </picture>
                     </div>
                     <h3>Premium</h3>
-                    <span>від 1000$</span>
+                    <span><small>від</small> 1000$</span>
                     <ul>
-                        <li>Pro або Custom розробка</li>
+                        <li>pro або кастомна розробка</li>
                         <li>інтеграції</li>
                     </ul>
-                    <button>деталі</button>
+                        <a href='https://t.me/chatbotique_bot?start=w26565311'>деталі</a>
+                    </div>
                 </div>
                 <div className="slide s4">
+                    <div className="content">
                     <div className='slide_emodji'>
                         <picture>
                             <img
@@ -126,21 +146,24 @@ const App = () => {
                         </picture>
                     </div>
                     <h3>Консультація</h3>
-                    <span>100$/година</span>
-                    <button>деталі</button>
+                    <span>100$<small>/година</small></span>
+                        <a href='https://t.me/chatbotique_bot?start=w26565337'>деталі</a>
+                    </div>
                 </div>
                 <div className="slide s5">
+                    <div className="content">
                     <div className='slide_emodji'>
                         <picture>
                             <img src="/brain.svg" alt="😎" width="40" height="40"/>
                         </picture>
                     </div>
                     <h3>AI assistant</h3>
-                    <span>від 200$</span>
+                    <span><small>від</small> 200$</span>
                     <ul>
                         <li>бот на базі ChatGPT</li>
                     </ul>
-                    <button>деталі</button>
+                        <a href='https://t.me/chatbotique_bot?start=w26565323'>деталі</a>
+                    </div>
                 </div>
             </div>
             <div className="prev" onClick={prevSlide}>
