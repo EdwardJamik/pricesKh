@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSwipeable } from "react-swipeable";
 import "./index.css";
+import {useTelegram} from "./component/useTelegram.jsx";
 
 const nextIcon = [
     <svg fill="#fff" height="20" width="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55.752 55.752" >
@@ -15,6 +16,14 @@ const backIcon = [
 ]
 
 const App = () => {
+
+    const {webApp} = useTelegram()
+
+    webApp.expand()
+    window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+    window.scrollTo(0, 100);
+    webApp.ready()
+
     const [slides, setSlides] = useState([]);
     const [flag, setFlag] = useState(0);
     const [activeSlide, setActiveSlide] = useState(0);
@@ -48,7 +57,6 @@ const App = () => {
             if (position === 0) {
                 slide.style.opacity = 1
                 slide.style.transform = "translateX(0) scale(1)";
-                // slide.style.boxShadow = "1em 0 1em -0.2em rgba(0, 0, 0, 0.2), -1em 0 1em -0.2em rgba(0, 0, 0, 0.2)"
                 slide.style.zIndex = 99;
             } else if (position === 1) {
                 slide.style.opacity = 1
@@ -93,7 +101,7 @@ const App = () => {
                             <li>створення 1-го сценарію</li>
                             <li>консультація</li>
                         </ul>
-                        <a href='https://t.me/chatbotique_bot?start=w26366518'>деталі</a>
+                        <a onClick={()=>{webApp?.close()}} href='https://t.me/chatbotique_bot?start=w26366518'>деталі</a>
                     </div>
                 </div>
                 <div className="slide s2">
@@ -115,7 +123,7 @@ const App = () => {
                         <li>Basic</li>
                         <li>налаштування AI бота</li>
                     </ul>
-                        <a href='https://t.me/chatbotique_bot?start=w26565312'>деталі</a>
+                        <a onClick={()=>{webApp?.close()}} href='https://t.me/chatbotique_bot?start=w26565312'>деталі</a>
                     </div>
                 </div>
                 <div className="slide s3">
@@ -130,10 +138,10 @@ const App = () => {
                     <h3>Premium</h3>
                     <span><small>від</small> 1000$</span>
                     <ul>
-                        <li>pro або кастомна розробка</li>
+                        <li>Pro або кастомна розробка</li>
                         <li>інтеграції</li>
                     </ul>
-                        <a href='https://t.me/chatbotique_bot?start=w26565311'>деталі</a>
+                        <a onClick={()=>{webApp?.close()}} href='https://t.me/chatbotique_bot?start=w26565311'>деталі</a>
                     </div>
                 </div>
                 <div className="slide s4">
@@ -147,7 +155,7 @@ const App = () => {
                     </div>
                     <h3>Консультація</h3>
                     <span>100$<small>/година</small></span>
-                        <a href='https://t.me/chatbotique_bot?start=w26565337'>деталі</a>
+                        <a onClick={()=>{webApp?.close()}} href='https://t.me/chatbotique_bot?start=w26565337'>деталі</a>
                     </div>
                 </div>
                 <div className="slide s5">
@@ -162,7 +170,7 @@ const App = () => {
                     <ul>
                         <li>бот на базі ChatGPT</li>
                     </ul>
-                        <a href='https://t.me/chatbotique_bot?start=w26565323'>деталі</a>
+                        <a onClick={()=>{webApp?.close()}} href='https://t.me/chatbotique_bot?start=w26565323'>деталі</a>
                     </div>
                 </div>
             </div>
